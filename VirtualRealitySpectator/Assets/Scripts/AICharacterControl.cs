@@ -119,8 +119,8 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 }
                 else
                 {
-                    Audio.PlayOneShot(ZombieHorde, 0.5f);
-                    Audio.PlayOneShot(Ambience, 0.25f);
+                    //Audio.PlayOneShot(ZombieHorde, 0.5f);
+                    //Audio.PlayOneShot(Ambience, 0.25f);
                     Audio.Play();
                     StartMoving = true;
                 }
@@ -177,7 +177,7 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         {
             agent.Stop();//Stop the agent moving for the moment.
             MyAnimator.CrossFade("Shoot", 0.1f);//Play the desired animation while it is stopped.
-            Audio.PlayOneShot(GunshotSound, 0.75f);
+            Audio.PlayOneShot(GunshotSound, 1.0f);
             yield return new WaitForSeconds(0.2f);
             GunParticles.Play();
             yield return new WaitForSeconds(2.3f);//Play the animation/wait in position for this amount of time.
