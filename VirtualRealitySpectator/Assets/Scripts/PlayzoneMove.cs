@@ -89,6 +89,8 @@ public class PlayzoneMove : MonoBehaviour
         {
             CurrentView = 4;
         }
+
+        //Swtich between first and third person view.
         if (Input.GetKeyDown(KeyCode.Alpha6))
         {
             CurrentView = 5;
@@ -97,6 +99,27 @@ public class PlayzoneMove : MonoBehaviour
         {
             CurrentView = 6;
         }
+
+        //Lerp between corner cameras.
+        if (Input.GetKey(KeyCode.Alpha2) && Input.GetKey(KeyCode.LeftControl))
+        {
+            CurrentView = 7;
+        }
+        if (Input.GetKey(KeyCode.Alpha3) && Input.GetKey(KeyCode.LeftControl))
+        {
+            CurrentView = 8;
+        }
+        if (Input.GetKey(KeyCode.Alpha4) && Input.GetKey(KeyCode.LeftControl))
+        {
+            CurrentView = 9;
+        }
+        if (Input.GetKey(KeyCode.Alpha5) && Input.GetKey(KeyCode.LeftControl))
+        {
+            CurrentView = 10;
+        }
+
+
+
 
         //Return to the start position.
         if (CurrentView == 0)
@@ -108,7 +131,7 @@ public class PlayzoneMove : MonoBehaviour
             transform.rotation = StartRotation;
         }
 
-        //Switch between cameras.
+        //Instant swtich between corner between cameras.
         if (CurrentView == 1)
         {
             Script.enabled = true;
@@ -141,6 +164,8 @@ public class PlayzoneMove : MonoBehaviour
             transform.position = CornerCamera4Position.position;
             transform.rotation = CornerCamera4Position.rotation;
         }
+
+        //Switch between first and third person view.
         if (CurrentView == 5)
         {
             FirstPerson = false;
@@ -152,6 +177,40 @@ public class PlayzoneMove : MonoBehaviour
             FirstPerson = true;
             ThirdPerson = false;
             //Script.enabled = true;
+        }
+
+        //Lerp between corner cameras.
+        if (CurrentView == 7)
+        {
+            Script.enabled = true;
+            FirstPerson = false;
+            ThirdPerson = false;
+            transform.position = Vector3.Lerp(transform.position, CornerCamera1Position.position, Time.deltaTime * 5.0f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, CornerCamera1Position.rotation, Time.deltaTime * 5.0f);
+        }
+        if (CurrentView == 8)
+        {
+            Script.enabled = true;
+            FirstPerson = false;
+            ThirdPerson = false;
+            transform.position = Vector3.Lerp(transform.position, CornerCamera2Position.position, Time.deltaTime * 5.0f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, CornerCamera2Position.rotation, Time.deltaTime * 5.0f);
+        }
+        if (CurrentView == 9)
+        {
+            Script.enabled = true;
+            FirstPerson = false;
+            ThirdPerson = false;
+            transform.position = Vector3.Lerp(transform.position, CornerCamera3Position.position, Time.deltaTime * 5.0f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, CornerCamera3Position.rotation, Time.deltaTime * 5.0f);
+        }
+        if (CurrentView == 10)
+        {
+            Script.enabled = true;
+            FirstPerson = false;
+            ThirdPerson = false;
+            transform.position = Vector3.Lerp(transform.position, CornerCamera4Position.position, Time.deltaTime * 5.0f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, CornerCamera4Position.rotation, Time.deltaTime * 5.0f);
         }
 
         if (ThirdPerson == true)
@@ -166,8 +225,8 @@ public class PlayzoneMove : MonoBehaviour
             Headset.transform.position = FirstPersonCameraPosition.position;
             Headset.transform.rotation = FirstPersonCameraPosition.rotation;
 
-            transform.position = Vector3.Lerp(transform.position, Headset.transform.position, Time.deltaTime * 20);
-            transform.rotation = Quaternion.Lerp(transform.rotation, Headset.transform.rotation, Time.deltaTime * 20);
+            transform.position = Vector3.Lerp(transform.position, Headset.transform.position, Time.deltaTime * 5.0f);//20
+            transform.rotation = Quaternion.Lerp(transform.rotation, Headset.transform.rotation, Time.deltaTime * 5.0f);//20
         }
     }
 }
